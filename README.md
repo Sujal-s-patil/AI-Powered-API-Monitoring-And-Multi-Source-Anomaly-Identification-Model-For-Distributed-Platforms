@@ -1,0 +1,2 @@
+# AI-Powered-API-Monitoring-And-Multi-Source-Anomaly-Identification-Model-For-Distributed-Platforms
+AI-Powered API Monitoring system for modern enterprises. It collects, aggregates &amp; analyzes high-frequency logs across on-prem, cloud &amp; SaaS to detect anomalies &amp; predict failures. Features multi-source data fusion, predictive forecasting &amp; sub-second detection (F1≥0.95) for DevOps/SRE teams.
