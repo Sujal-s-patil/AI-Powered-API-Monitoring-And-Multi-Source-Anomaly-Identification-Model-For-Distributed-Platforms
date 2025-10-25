@@ -35,10 +35,19 @@ export function NavMain({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title}>
-                {item.icon && <item.icon />}
-                <span>{item.title}</span>
-              </SidebarMenuButton>
+              {item.url ? (
+                <SidebarMenuButton asChild tooltip={item.title}>
+                  <a href={item.url} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {item.icon && <item.icon />}
+                    <span>{item.title}</span>
+                  </a>
+                </SidebarMenuButton>
+              ) : (
+                <SidebarMenuButton tooltip={item.title}>
+                  {item.icon && <item.icon />}
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+              )}
             </SidebarMenuItem>
           ))}
         </SidebarMenu>

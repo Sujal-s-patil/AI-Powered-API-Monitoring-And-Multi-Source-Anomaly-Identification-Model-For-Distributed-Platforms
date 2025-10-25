@@ -10,7 +10,7 @@ export default defineConfig({
       usePolling: true,   // force file watching even on WSL2/Docker
       interval: 100,      // check for changes every 100ms
     },
-     open: '/docs/index.html',  // open browser on server start
+     open: '/',  // open browser on server start
     host: true,           // allows access from network devices
     port: 5173,           // default vite port (change if needed)
   },

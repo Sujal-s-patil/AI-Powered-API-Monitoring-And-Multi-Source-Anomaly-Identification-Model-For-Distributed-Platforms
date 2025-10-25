@@ -39,6 +39,16 @@ const data = {
   },
   navMain: [
     {
+      title: "API Monitor",
+      view: "dashboard",
+      icon: IconInnerShadowTop,
+    },
+    {
+      title: "Logs",
+      view: "logs",
+      icon: IconReport,
+    },
+    {
       title: "Overview",
       url: "#",
       icon: IconDashboard,
@@ -47,11 +57,6 @@ const data = {
       title: "Endpoints",
       url: "#",
       icon: IconListDetails,
-    },
-    {
-      title: "Logs",
-      url: "#",
-      icon: IconReport,
     },
     {
       title: "Alerts",
@@ -147,25 +152,36 @@ const data = {
   ],
 }
 
-export function AppSidebar({
-  ...props
-}) {
+export function AppSidebar({ onSelectView, ...props }) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">API Monitor</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          {data.navMain.map((item) => (
+            <SidebarMenuItem key={item.title}>
+              {item.view ? (
+                <SidebarMenuButton onClick={() => onSelectView && onSelectView(item.view)} tooltip={item.title}>
+                  {item.icon && <item.icon />}
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+              ) : item.url ? (
+                <SidebarMenuButton asChild tooltip={item.title}>
+                  <a href={item.url} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {item.icon && <item.icon />}
+                    <span>{item.title}</span>
+                  </a>
+                </SidebarMenuButton>
+              ) : (
+                <SidebarMenuButton tooltip={item.title}>
+                  {item.icon && <item.icon />}
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+              )}
+            </SidebarMenuItem>
+          ))}
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
         <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
